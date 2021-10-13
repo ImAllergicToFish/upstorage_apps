@@ -49,11 +49,15 @@ exports.default = (function (req, res, next) { return __awaiter(void 0, void 0, 
             pathToKeeper = path_1.default.resolve('./apps/keeper') + '/';
             files = fs_1.default.readdirSync(pathToKeeper);
             versionFile = new filesNameParser_1.default(files).versionFile;
-            version = fs_1.default.readFileSync(pathToKeeper + versionFile);
+            if (versionFile == undefined)
+                throw new Error();
+            console.log(versionFile);
+            version = fs_1.default.readFileSync(pathToKeeper + versionFile).toString('utf8');
+            console.log(version);
             res.status(200).send(version);
         }
         catch (error) {
-            res.status(403).send("ERROR");
+            res.status(404).send("ERROR");
         }
         return [2 /*return*/];
     });

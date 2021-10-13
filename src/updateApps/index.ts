@@ -13,6 +13,7 @@ export default async function updateApps() {
             gitClone(gitURL, pathToApps)
         }
         else {
+            clearGit(pathToApps)
             clearApps(pathToApps)
             gitClone(gitURL, pathToApps)
         }
@@ -29,4 +30,8 @@ function gitClone(gitURL: string, pathToApps: string) {
 
 function clearApps(pathToApps) {
     execSync(`rm -rf ${pathToApps + '/*'}`)
+}
+
+function clearGit(pathToApps) {
+    execSync(`rm -rf ${pathToApps + '/.git'}`)
 }

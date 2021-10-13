@@ -54,6 +54,7 @@ function updateApps() {
                     gitClone(gitURL, pathToApps);
                 }
                 else {
+                    clearGit(pathToApps);
                     clearApps(pathToApps);
                     gitClone(gitURL, pathToApps);
                 }
@@ -71,5 +72,8 @@ function gitClone(gitURL, pathToApps) {
 }
 function clearApps(pathToApps) {
     (0, child_process_1.execSync)("rm -rf " + (pathToApps + '/*'));
+}
+function clearGit(pathToApps) {
+    (0, child_process_1.execSync)("rm -rf " + (pathToApps + '/.git'));
 }
 //# sourceMappingURL=index.js.map
