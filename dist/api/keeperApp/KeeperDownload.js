@@ -49,7 +49,15 @@ exports.default = (function (req, res, next) { return __awaiter(void 0, void 0, 
             pathToKeeper = path_1.default.resolve('./apps/keeper') + '/';
             files = fs_1.default.readdirSync(pathToKeeper);
             appFile = new filesNameParser_1.default(files).appFile;
-            res.sendFile(pathToKeeper + appFile);
+            //res.sendFile(pathToKeeper+appFile)
+            // console.log(appFile)
+            // console.log(pathToKeeper)
+            // res.download((pathToKeeper+appFile), appFile)
+            // res.setHeader('Content-Disposition', 'attachment; filename=' + appFile);
+            // res.setHeader('Content-Transfer-Encoding', 'binary');
+            // res.setHeader('Content-Type', 'application/octet-stream');
+            // res.sendFile(pathToKeeper+appFile)
+            res.download(pathToKeeper + appFile, appFile);
         }
         catch (error) {
             res.status(403).send("ERROR");

@@ -35,10 +35,22 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+var fs_1 = __importDefault(require("fs"));
+var path_1 = __importDefault(require("path"));
+var filesNameParser_1 = __importDefault(require("../../filesNameParser"));
 exports.default = (function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var pathToKeeper, files, versionFile, version;
     return __generator(this, function (_a) {
         try {
+            pathToKeeper = path_1.default.resolve('./apps/keeper') + '/';
+            files = fs_1.default.readdirSync(pathToKeeper);
+            versionFile = new filesNameParser_1.default(files).versionFile;
+            version = fs_1.default.readFileSync(pathToKeeper + versionFile);
+            res.status(200).send(version);
         }
         catch (error) {
             res.status(403).send("ERROR");
