@@ -2,24 +2,24 @@ import { execSync } from "child_process";
 import path from 'path'
 import fs from 'fs'
 
-export default async function updateApps() {
+export default async function cloneAppsFromGit() {
     try {
         
         const pathToApps = path.resolve('./apps')
-        const gitURL = 'https://gitlab.upstorage.net/a.som/deploy_keeper'
+        const gitURL = 'https://gitlab.upstorage.net/a.som/deploy_keeper.git/'
+
+        console.log(`Clone apps to path: ${pathToApps}`)
+        console.log('LOADING...')
+
+        clearGit(pathToApps)
+        clearApps(pathToApps)
+        gitClone(gitURL, pathToApps)
         
-        const files = fs.readdirSync(pathToApps)
-        if(files.length == 0) {
-            gitClone(gitURL, pathToApps)
-        }
-        else {
-            clearGit(pathToApps)
-            clearApps(pathToApps)
-            gitClone(gitURL, pathToApps)
-        }
+        console.log("DONE!")
         
     }
     catch(error) {
+        console.log(error)
         return error
     }
 }
