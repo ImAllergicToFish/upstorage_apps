@@ -12,6 +12,6 @@ const routes = express.Router();
 // Add the routes to the /api endpoint
 app.use('/apps', routes);
 
-require('./keeperApp').default(routes)
+require('./updateApp').default(routes)
 
 export default app;

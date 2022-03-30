@@ -1,7 +1,7 @@
 import api from './api';
 import updateApps from './updateApps';
 
-const PORT = 3000;
+const PORT = 3001;
 
 api.listen(PORT, '0.0.0.0',() => {
     updateApps()
