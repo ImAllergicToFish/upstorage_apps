@@ -2,9 +2,16 @@ import fs from 'fs'
 import path from 'path'
 import { exec } from "child_process";
 import FilesNameParser from '../../filesNameParser';
+import BlockStatus from '../../blockStatus';
 
 export default async (req, res, next) => {
     try {
+        
+        if(BlockStatus.get()) {
+            res.status(403).send("IS BLOCKED");
+            return;
+        }
+
         const folder = req.params.folder
         if(!folder) throw new Error()
 

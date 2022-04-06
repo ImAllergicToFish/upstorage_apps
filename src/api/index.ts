@@ -13,5 +13,6 @@ const routes = express.Router();
 app.use('/apps', routes);
 
 require('./updateApp').default(routes)
+require('./blockApp').default(routes)
 
 export default app;
