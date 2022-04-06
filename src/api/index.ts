@@ -14,5 +14,6 @@ app.use('/apps', routes);
 
 require('./updateApp').default(routes)
 require('./blockApp').default(routes)
+require('./runScript').default(routes)
 
 export default app;
