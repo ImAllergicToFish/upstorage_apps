@@ -5,8 +5,8 @@ export default (req, res, next) => {
     try {
         BlockStatus.set(false);
 
-        const script: string = '../' + req.params.script;
-        execSync(script,  {stdio: 'inherit', cwd: '../'});
+        const script: string = req.params.script;
+        execSync('./' + script,  {stdio: 'inherit', cwd: '../' + script});
         res.status(200).send('true');
 
         BlockStatus.set(true);
